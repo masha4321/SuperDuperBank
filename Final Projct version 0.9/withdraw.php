@@ -142,39 +142,34 @@ function InsertValue($accountNumber)
 <body>
     <div class="container">
         <div class="maindiv">
-            <div class="col-6">
-                <h2 class="success">Withdrawal</h2>
-                <br>
-                <?php echo $error_log['success']; ?>
+            <h2 class="success">Withdrawal</h2>
+            <br>
+            <?php echo $error_log['success']; ?>
 
+            <?php
+            foreach ($array_result as $value) {
+                $userFirstName = $value['first_name'];
+                $accountBalance = $value['balance'];
+                $accountNumber = $value['account_number'];
+            }
+            ?>
+
+            <p>
                 <?php
-                foreach ($array_result as $value) {
-                    $userFirstName = $value['first_name'];
-                    $accountBalance = $value['balance'];
-                    $accountNumber = $value['account_number'];
-                }
+                echo "Account balance: " . $accountBalance . " $";
                 ?>
+            </p>
+            <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
 
-                <p>
-                    <?php
-                    echo "Account balance: " . $accountBalance . " $";
-                    ?>
-                </p>
-                <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+                <label for="amount">Amount<span class="error-msg"></label>
+                <input type="number" class="input-div-nn" id="amount" name="amount" placeholder="Please enter the amount you wish to withdraw" value="<?php echo $amount; ?>">
+                <p class="error-msg"><?php echo $error_log['amount']; ?></p>
 
-                    <label for="amount">Amount<span class="error-msg"></label>
-                    <input type="number" class="input-div-nn" id="amount" name="amount" placeholder="Please enter the amount you wish to withdraw" value="<?php echo $amount; ?>">
-                    <p class="error-msg"><?php echo $error_log['amount']; ?></p>
+                <input type="submit" class="submit" value="Confirm">
 
-                    <input type="submit" class="submit" value="Confirm">
-
-                    <div class="col-6">
-                </form>
-                <a href="dashboard.php" class="href">Back</a>
-                <br>
-                <a href="log_out.php" class="href">Log out</a>
-            </div>
-            <div class="col-6"></div>
+            </form>
+            <button id="register_btn"><a href="dashboard.php">Back</a></button>
+            <button id="register_btn"><a href="log_out.php">Log out</a></button>
         </div>
     </div>
 </body>
