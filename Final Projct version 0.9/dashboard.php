@@ -73,115 +73,151 @@ function InsertBankingValue($userAccountNumber)
 </head>
 
 <body>
+    <div class="container">
+        <div class="maindiv">
+            <div class="accordion" id="accordionExample">
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingOne">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            Account Details
+                        </button>
+                    </h2>
+                    <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            <table id="customers">
+                                <tr>
+                                    <th>First name</th>
+                                    <th>Last name</th>
+                                    <th>Mobile</th>
+                                    <th>Address</th>
+                                    <th>Email</th>
+                                    <th>Edit</th>
+                                </tr>
 
-    <div class="accordion" id="accordionExample">
-        <div class="accordion-item">
-            <h2 class="accordion-header" id="headingOne">
-                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                    Account Details
-                </button>
-            </h2>
-            <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-                <div class="accordion-body">
-                    <table id="customers">
-                        <tr>
-                            <th>First name</th>
-                            <th>Last name</th>
-                            <th>Mobile</th>
-                            <th>Address</th>
-                            <th>Email</th>
-                            <th>Edit</th>
-                        </tr>
+                                <?php
+                                foreach ($array_result as $value) { ?>
+                                    <tr>
+                                        <td><?php echo $value['first_name']; ?></td>
+                                        <td><?php echo $value['last_name']; ?></td>
+                                        <td><?php echo $value['mobile']; ?></td>
+                                        <td><?php echo $value['address']; ?></td>
+                                        <td><?php echo $value['email']; ?></td>
+                                        <td><a href="edit.php">Update</a>
+                                    </tr>
+                                <?php }
+                                ?>
 
-                        <?php
-                        foreach ($array_result as $value) { ?>
-                            <tr>
-                                <td><?php echo $value['first_name']; ?></td>
-                                <td><?php echo $value['last_name']; ?></td>
-                                <td><?php echo $value['mobile']; ?></td>
-                                <td><?php echo $value['address']; ?></td>
-                                <td><?php echo $value['email']; ?></td>
-                                <td><a href="dashboard.php">Update</a>
-                            </tr>
-                        <?php }
-                        ?>
-
-                    </table>
-                </div>
-            </div>
-        </div>
-        <div class="accordion-item">
-            <h2 class="accordion-header" id="headingTwo">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                    Banking Details
-                </button>
-            </h2>
-            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
-                <div class="accordion-body">
-                    <?php
-                    foreach ($array_result as $value) {
-                        $accountBalance = $value['balance'];
-                        $accountNumber = $value['account_number'];
-                    }
-                    ?>
-
-                    <p>
-                        <?php
-                        echo "Your account balance is " . $accountBalance . " $";
-                        echo '<br>';
-                        echo "Your account number is " . $accountNumber;
-                        ?>
-                    </p>
-
-
-
-                    <table id="customers">
-                        <tr>
-                            <th>Type of transaction</th>
-                            <th>Amount</th>
-                            <th>Date</th>
-                            <th>Information</th>
-                            <th>Account traded with</th>
-                        </tr>
-
-                        <?php
-                        foreach ($array_result_banking as $value) { ?>
-                            <tr>
-                                <td><?php echo $value['type']; ?></td>
-                                <td><?php echo $value['amount']; ?></td>
-                                <td><?php echo $value['date_created']; ?></td>
-                                <td><?php echo $value['transaction_informations']; ?></td>
-                                <td><?php echo $value['account_traded_with']; ?></td>
-                            </tr>
-                        <?php }
-                        ?>
-
-                    </table>
-
-
-                </div>
-            </div>
-        </div>
-        <div class="accordion-item">
-            <h2 class="accordion-header" id="headingThree">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                    Banking Actions
-                </button>
-            </h2>
-            <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
-                <div class="accordion-body text-center">
-                    <div class="btn-group" role="group" aria-label="Basic outlined example">
-                        <a type="button" href="withdraw.php"><button class="btn btn-outline-primary">Withdraw</button></a>
-                        <a type="button" href="deposit.php"><button class="btn btn-outline-primary">Deposit</button></a>
-                        <a type="button" href="transfer.php"><button class="btn btn-outline-primary">Transfer</button></a>
-                        <a type="button" href="contact.php"><button class="btn btn-outline-primary">Contact list</button></a>
+                            </table>
+                        </div>
                     </div>
                 </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingTwo">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            Banking Details
+                        </button>
+                    </h2>
+                    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            <?php
+                            foreach ($array_result as $value) {
+                                $accountBalance = $value['balance'];
+                                $accountNumber = $value['account_number'];
+                            }
+                            ?>
+
+                            <p>
+                                <?php
+                                echo "Your account number is " . $accountNumber;
+                                echo '<br>';
+                                echo "Your account balance is " . $accountBalance . " $";
+
+                                if ($accountBalance < 0) {
+                                    echo "<br><br>Extra charges may be applied at the end of the month.";
+                                }
+                                ?>
+                            </p>
+
+
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingThree">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                            Banking Actions
+                        </button>
+                    </h2>
+                    <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                        <div class="accordion-body text-center">
+                            <div class="btn-group" role="group" aria-label="Basic outlined example">
+                                <a type="button" href="withdraw.php"><button class="btn btn-outline-primary">Withdraw</button></a>
+                                <a type="button" href="deposit.php"><button class="btn btn-outline-primary">Deposit</button></a>
+                                <a type="button" href="transfer.php"><button class="btn btn-outline-primary">Transfer</button></a>
+                                <a type="button" href="contact.php"><button class="btn btn-outline-primary">Contact list</button></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingFour">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                            Transaction History
+                        </button>
+                    </h2>
+                    <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
+                        <div class="accordion-body text-center">
+                            <table id="customers">
+                                <tr>
+                                    <th>Type of transaction</th>
+                                    <th>Amount</th>
+                                    <th>Account traded with</th>
+                                    <th>Date</th>
+                                </tr>
+
+                                <?php
+                                foreach ($array_result_banking as $value) { ?>
+                                    <tr>
+                                        <td><?php echo $value['transaction_informations']; ?></td>
+                                        <td><?php echo $value['amount']; ?></td>
+                                        <td><?php
+
+                                            if ($value['account_traded_with'] == 0) {
+                                                echo '';
+                                            } else {
+                                                echo $value['account_traded_with'];
+                                            } ?></td>
+                                        <td><?php echo $value['date_created']; ?></td>
+                                    </tr>
+                                <?php }
+                                ?>
+
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingFive">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                            Logout
+                        </button>
+                    </h2>
+                    <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#accordionExample">
+                        <div class="accordion-body text-center">
+                            <button id="logout_btn"><a href="log_out.php" class="href">Log out</a></button>
+
+                        </div>
+                    </div>
+                </div>
+
+
+
             </div>
         </div>
-        <a href="log_out.php" class="href">Log out</a> <br>
     </div>
-
 
 </body>
 

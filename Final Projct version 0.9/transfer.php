@@ -81,7 +81,7 @@ if (!empty($_POST)) {
         $account_traded_with = $_POST['account_traded_with'];
     }
     if ($_POST['transaction_informations'] != '') {
-        $transaction_informations = $_POST['transaction_informations'];
+        $transaction_informations = "Transfer<br>Comment: " . $_POST['transaction_informations'];
     }
 }
 
@@ -119,15 +119,41 @@ if (isset($error_log['success']) && !empty($error_log['success'])) {
 function InsertValue($accountNumber)
 {
     require "connect.php";
+    $transactionType = "Transfer to account " . $_POST['account_traded_with'];
+    $transaction_informations = "Transfer<br>Comment: " . $_POST['transaction_informations'];
 
-    $transactionType = "Transfer to account ".$_POST['account_traded_with'];
-    $updated_balance = $_SESSION["current_balance"] - $_POST['amount'];
-    $sql = "insert into transactions (account_number,account_traded_with,type,amount,transaction_informations) values('$accountNumber','$_POST[account_traded_with]','$transactionType','$_POST[amount]','$_POST[transaction_informations]')";
-    if ($conn->query($sql) === true) {
+    $sql0 = "SELECT balance FROM user_accounts WHERE account_number='{$accountNumber}'";
+    $result = $conn->query($sql0);
+    $row = $result->fetch_assoc();
+    $currentBalance = $row['balance'];
 
+    if (($currentBalance > $_POST['amount'])) {
+        $updated_balance = $currentBalance - $_POST['amount'];
+    } else {
+        $error_log['amount'] = 'Insufficient Funds';
+    }
+
+
+
+    $sql1 = "insert into transactions (account_number,account_traded_with,type,amount,transaction_informations) values('$accountNumber','$_POST[account_traded_with]','$transactionType','$_POST[amount]','$transaction_informations')";
+    if ($conn->query($sql1) === true) {
     } else {
         echo "error" . $conn->connect_error;
     }
+
+    $sql2 = "UPDATE user_accounts 
+    SET balance = '$updated_balance'
+    WHERE account_number = '{$accountNumber}'";
+    if ($conn->query($sql2) === true) {
+        header("Location: transfer.php");
+    } else {
+        echo "error" . $conn->connect_error;
+    }
+
+    $conn->close();
+    return $error_log;
+
+
     $conn->close();
 }
 ?>
@@ -147,35 +173,35 @@ function InsertValue($accountNumber)
     <div class="container">
         <div class="maindiv">
             <div class="col-6">
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
                 <h2 class="success">Transfer</h2>
                 <br>
                 <?php echo $error_log['success']; ?>
-                                
+
                 <?php
-                    foreach ($array_result as $value) {
-                        $userFirstName = $value['first_name'];
-                        $accountBalance = $value['balance'];
-                        $accountNumber = $value['account_number'];
-                    }
+                foreach ($array_result as $value) {
+                    $userFirstName = $value['first_name'];
+                    $accountBalance = $value['balance'];
+                    $accountNumber = $value['account_number'];
+                }
                 ?>
 
                 <p>
                     <?php
-                        echo "Account balance: " . $accountBalance . " $";
+                    echo "Account balance: " . $accountBalance . " $";
                     ?>
                 </p>
                 <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
@@ -198,27 +224,27 @@ function InsertValue($accountNumber)
                 </form>
                 <br>
                 <table id="customers">
+                    <tr>
+                        <th>Contact Name</th>
+                        <th>Account number</th>
+                        <th>Select</th>
+                    </tr>
+
+                    <?php
+                    foreach ($array_result_contact as $value) { ?>
                         <tr>
-                            <th>Contact Name</th>
-                            <th>Account number</th>
-                            <th>Select</th>
+                            <td><?php echo $value['contact_name']; ?></td>
+                            <td><?php echo $value['contact_number']; ?></td>
+                            <td><input type='checkbox' name='delete[]' value='<?= $id ?>'></td>
                         </tr>
+                    <?php }
+                    ?>
 
-                        <?php
-                        foreach ($array_result_contact as $value) { ?>
-                            <tr>
-                                <td><?php echo $value['contact_name']; ?></td>
-                                <td><?php echo $value['contact_number']; ?></td>
-                                <td><input type='checkbox' name='delete[]' value='<?= $id ?>'></td>
-                            </tr>
-                        <?php }
-                        ?>
-
-                    </table>
-                    <br>
-            <a href="dashboard.php" class="href">Back</a>
-            <br>
-            <a href="log_out.php" class="href">Log out</a>
+                </table>
+                <br>
+                <a href="dashboard.php" class="href">Back</a>
+                <br>
+                <a href="log_out.php" class="href">Log out</a>
             </div>
             <div class="col-6"></div>
         </div>
