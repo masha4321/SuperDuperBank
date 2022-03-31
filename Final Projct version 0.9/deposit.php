@@ -164,7 +164,7 @@ function InsertValue($accountNumber)
                 </form>
                 <button id="register_btn"><a href="dashboard.php">Back</a></button>
                 <button id="register_btn"><a href="log_out.php">Log out</a></button>
-                
+
             </div>
             <div class="col-6"></div>
         </div>

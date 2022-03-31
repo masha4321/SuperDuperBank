@@ -120,20 +120,18 @@ function InsertValue($accountNumber)
 {
     require "connect.php";
 
-    $transactionType = "Transfer to account ".$_POST['account_traded_with'];
+    $transactionType = "Transfer to account " . $_POST['account_traded_with'];
     $updated_balance = $_SESSION["current_balance"] - $_POST['amount'];
     $sql = "insert into transactions (account_number,account_traded_with,type,amount,transaction_informations) values('$accountNumber','$_POST[account_traded_with]','$transactionType','$_POST[amount]','$_POST[transaction_informations]')";
     if ($conn->query($sql) === true) {
-
     } else {
         echo "error" . $conn->connect_error;
     }
 
-    $transactionType = "Received from account ".$accountNumber;
+    $transactionType = "Received from account " . $accountNumber;
     $updated_balance = $_SESSION["current_balance"] - $_POST['amount'];
     $sql1 = "insert into transactions (account_number,account_traded_with,type,amount,transaction_informations) values('$_POST[account_traded_with]','$accountNumber','$transactionType','$_POST[amount]','$_POST[transaction_informations]')";
     if ($conn->query($sql1) === true) {
-
     } else {
         echo "error" . $conn->connect_error;
     }
@@ -160,6 +158,15 @@ function InsertValue($accountNumber)
     $currentBalance = $row['balance'];
     $updated_balance = $currentBalance + $_POST['amount'];
 
+    if (isset($_POST['contactChoice'])) {
+
+        if (isset($_POST['choice'])) {
+            foreach ($_POST['choice'] as $chosenUser) {
+                $_POST['account_traded_with'] = '$chosenUser ';
+            }
+        }
+    }
+
     $sql5 = "UPDATE user_accounts 
     SET balance = '$updated_balance'
     WHERE account_number = '{$_POST['account_traded_with']}'";
@@ -171,6 +178,9 @@ function InsertValue($accountNumber)
 
     $conn->close();
 }
+
+
+
 ?>
 
 <!DOCTYPE html>
@@ -216,36 +226,50 @@ function InsertValue($accountNumber)
                     <p class="error-msg"><?php echo $error_log['account_traded_with']; ?></p>
 
                     <label for="transaction_informations">Information<span class="error-msg">*</label>
-                    <input type="text" class="input-div-nn" id="transaction_informations" name="transaction_informations" placeholder="Please enter any comments regarding the transaction" value="<?php echo $transaction_informations; ?>">
-                    <p class="error-msg"><?php echo $error_log['transaction_informations']; ?></p>
+                    <input type="text" class="input-div-nn" id="transaction_informations" name="transaction_informations" placeholder="Please enter any comments regarding the transaction" ">
+                    <p class=" error-msg"><?php echo $error_log['transaction_informations']; ?></p>
 
+
+                    <table id="customers">
+                        <tr>
+                            <th>Contact Name</th>
+                            <th>Account number</th>
+                            <th>Select</th>
+                        </tr>
+
+                        <?php
+                        foreach ($array_result_contact as $value) { ?>
+                            <tr>
+                                <td><?php echo $value['contact_name']; ?></td>
+                                <td><?php echo $value['contact_number']; ?></td>
+                                <td><input type='radio' value="choice" name='contactChoice[]' value='<?= $id ?>'></td>
+                            </tr>
+                        <?php }
+                        ?>
+
+                    </table>
                     <input type="submit" class="submit" value="Transfer money">
+                    <br>
 
                     <div class="col-6">
                 </form>
                 <br>
-                <table id="customers">
-                    <tr>
-                        <th>Contact Name</th>
-                        <th>Account number</th>
-                        <th>Select</th>
-                    </tr>
 
-                    <?php
-                    foreach ($array_result_contact as $value) { ?>
-                        <tr>
-                            <td><?php echo $value['contact_name']; ?></td>
-                            <td><?php echo $value['contact_number']; ?></td>
-                            <td><input type='checkbox' name='delete[]' value='<?= $id ?>'></td>
-                        </tr>
-                    <?php }
-                    ?>
 
-                </table>
-                <button id="register_btn"><a href="dashboard.php">Back</a></button>
-                <button id="register_btn"><a href="log_out.php">Log out</a></button>
-                
+                <<<<<<< Updated upstream </table>
+                    <button id="register_btn"><a href="dashboard.php">Back</a></button>
+                    <button id="register_btn"><a href="log_out.php">Log out</a></button>
+
+                    =======
+                    <button><a href="dashboard.php" class="href">Back</a></button>
+                    <br>
+                    <button><a href="log_out.php" class="href">Log out</a></button>
+
+
+                    >>>>>>> Stashed changes
             </div>
+
+
             <div class="col-6"></div>
         </div>
     </div>
