@@ -163,6 +163,49 @@ tr:hover {
   background-color: coral;
 }
 
+<<<<<<< Updated upstream
 #top {
   margin-top:125px;
 }
+=======
+#register_btn{
+padding: 5px 5px;
+ border: unset;
+ border-radius: 15px;
+ color: #212121;
+ z-index: 1;
+ background: #aeb0f8;
+ position: relative;
+ font-weight: 500;
+ font-size: 15px;
+ -webkit-box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
+ box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
+ transition: all 250ms;
+ overflow: hidden;
+}
+
+#register_btn::before{
+  content: "";
+ position: absolute;
+ top: 0;
+ left: 0;
+ height: 100%;
+ width: 0;
+ border-radius: 15px;
+ background-color: rgb(248,222,126);
+ z-index: -1;
+ -webkit-box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
+ box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
+ transition: all 250ms
+}
+
+#register_btn:hover{
+  color: #e8e8e8 !important;
+}
+
+#register_btn:hover::before{
+  width: 100%;
+
+}
+
+>>>>>>> Stashed changes
