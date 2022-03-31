@@ -74,24 +74,6 @@ function InsertBankingValue($userAccountNumber)
 
 <body>
 
-    <?php
-    foreach ($array_result as $value) {
-        $userFirstName = $value['first_name'];
-        $accountBalance = $value['balance'];
-        $accountNumber = $value['account_number'];
-    }
-    ?>
-
-    <p>
-        <?php
-        echo "Hi " . $userFirstName;
-        echo '<br>';
-        echo "Your account balance is " . $accountBalance . " $";
-        echo '<br>';
-        echo "Your account number is " . $accountNumber;
-        ?>
-    </p>
-
     <div class="accordion" id="accordionExample">
         <div class="accordion-item">
             <h2 class="accordion-header" id="headingOne">
@@ -136,6 +118,21 @@ function InsertBankingValue($userAccountNumber)
             </h2>
             <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
                 <div class="accordion-body">
+                    <?php
+                    foreach ($array_result as $value) {
+                        $accountBalance = $value['balance'];
+                        $accountNumber = $value['account_number'];
+                    }
+                    ?>
+
+                    <p>
+                        <?php
+                        echo "Your account balance is " . $accountBalance . " $";
+                        echo '<br>';
+                        echo "Your account number is " . $accountNumber;
+                        ?>
+                    </p>
+
 
 
                     <table id="customers">

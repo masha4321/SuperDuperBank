@@ -80,7 +80,6 @@ if (isset($_POST['deleteButton'])) {
         <th>address</th>
         <th>Email</th>
         <th>Registration date</th>
-        <th>Edit</th>
         <th>Delete</th>
       </tr>
       <?php
@@ -105,8 +104,6 @@ if (isset($_POST['deleteButton'])) {
           <td><?= $address ?></td>
           <td><?= $email ?></td>
           <td><?= $reg_date ?></td>
-          <td><a href="edit.php">Edit</a></td>
-          <!-- Checkbox -->
           <td><input type='checkbox' name='delete[]' value='<?= $id ?>'></td>
         </tr>
       <?php } ?>
