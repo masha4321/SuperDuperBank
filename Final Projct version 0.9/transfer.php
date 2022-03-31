@@ -119,40 +119,55 @@ if (isset($error_log['success']) && !empty($error_log['success'])) {
 function InsertValue($accountNumber)
 {
     require "connect.php";
-    $transactionType = "Transfer to account " . $_POST['account_traded_with'];
-    $transaction_informations = "Transfer<br>Comment: " . $_POST['transaction_informations'];
 
-    $sql0 = "SELECT balance FROM user_accounts WHERE account_number='{$accountNumber}'";
-    $result = $conn->query($sql0);
-    $row = $result->fetch_assoc();
-    $currentBalance = $row['balance'];
+    $transactionType = "Transfer to account ".$_POST['account_traded_with'];
+    $updated_balance = $_SESSION["current_balance"] - $_POST['amount'];
+    $sql = "insert into transactions (account_number,account_traded_with,type,amount,transaction_informations) values('$accountNumber','$_POST[account_traded_with]','$transactionType','$_POST[amount]','$_POST[transaction_informations]')";
+    if ($conn->query($sql) === true) {
 
-    if (($currentBalance > $_POST['amount'])) {
-        $updated_balance = $currentBalance - $_POST['amount'];
-    } else {
-        $error_log['amount'] = 'Insufficient Funds';
-    }
-
-
-
-    $sql1 = "insert into transactions (account_number,account_traded_with,type,amount,transaction_informations) values('$accountNumber','$_POST[account_traded_with]','$transactionType','$_POST[amount]','$transaction_informations')";
-    if ($conn->query($sql1) === true) {
     } else {
         echo "error" . $conn->connect_error;
     }
 
-    $sql2 = "UPDATE user_accounts 
+    $transactionType = "Received from account ".$accountNumber;
+    $updated_balance = $_SESSION["current_balance"] - $_POST['amount'];
+    $sql1 = "insert into transactions (account_number,account_traded_with,type,amount,transaction_informations) values('$_POST[account_traded_with]','$accountNumber','$transactionType','$_POST[amount]','$_POST[transaction_informations]')";
+    if ($conn->query($sql1) === true) {
+
+    } else {
+        echo "error" . $conn->connect_error;
+    }
+
+
+    $sql2 = "SELECT balance FROM user_accounts WHERE account_number='{$accountNumber}'";
+    $result = $conn->query($sql2);
+    $row = $result->fetch_assoc();
+    $currentBalance = $row['balance'];
+    $updated_balance = $currentBalance - $_POST['amount'];
+
+    $sql3 = "UPDATE user_accounts 
     SET balance = '$updated_balance'
     WHERE account_number = '{$accountNumber}'";
-    if ($conn->query($sql2) === true) {
+    if ($conn->query($sql3) === true) {
         header("Location: transfer.php");
     } else {
         echo "error" . $conn->connect_error;
     }
 
-    $conn->close();
-    return $error_log;
+    $sql4 = "SELECT balance FROM user_accounts WHERE account_number='{$_POST['account_traded_with']}'";
+    $result = $conn->query($sql4);
+    $row = $result->fetch_assoc();
+    $currentBalance = $row['balance'];
+    $updated_balance = $currentBalance + $_POST['amount'];
 
+    $sql5 = "UPDATE user_accounts 
+    SET balance = '$updated_balance'
+    WHERE account_number = '{$_POST['account_traded_with']}'";
+    if ($conn->query($sql5) === true) {
+        header("Location: transfer.php");
+    } else {
+        echo "error" . $conn->connect_error;
+    }
 
     $conn->close();
 }
