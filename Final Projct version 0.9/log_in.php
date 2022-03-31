@@ -133,9 +133,10 @@ function InsertValue()
 
                     <input type="submit" class="submit" value="Confirm"><br>
 
-                    <a href="register.php" class="href">Register</a>
-                    <br>
-                    <a href="index.php" class="href">Home</a>
+                    <button id="register_btn"><a href="register.php">Register</a></button>
+                    <button id="register_btn"><a href="index.php" class="href">Home</a></button>
+                
+                    
                 </form>
             </div>
             <div class="col-6"></div>
