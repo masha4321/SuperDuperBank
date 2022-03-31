@@ -134,12 +134,12 @@ function InsertValue() {
 
                     <input type="submit" class="submit" value="Confirm">
 
-                    <br>
-                    <a href="admin_register.php" class="href">Create a new administrative account</a> <br>
-                    <a href="index.php" class="href">Home</a> <br>
+                    <button id="register_btn"><a href="admin_register.php">Create a new administrative account</a></button>
+                    <button id="register_btn"><a href="index.php">Home</a></button>
+                    
                 </form>
             </div>
-            <div class="col-6"></div>
+            
         </div>
     </div>
 </body>

@@ -202,9 +202,8 @@ function InsertValue()
 
                     <input type="submit" class="submit" value="Register">
 
-                    <br>
-                    <a href="log_in.php" class="href">Sign In</a> <br>
-                    <a href="index.php" class="href">Home</a> <br>
+                    <button id="register_btn"><a href="log_in.php">Sign In</a></button>
+                    <button id="register_btn"><a href="index.php">Home</a></button>
 
                 </form>
             </div>

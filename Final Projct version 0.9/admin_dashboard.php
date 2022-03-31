@@ -111,7 +111,8 @@ if (isset($_POST['deleteButton'])) {
     </table>
     <input type="submit" value="delete" name="deleteButton" onclick="return confirmDelete();">
   </form>
-  <a href="log_out.php" class="href">Log out</a> <br>
+  <button id="register_btn"><a href="log_out.php">Log out</a> </button>
+ 
 
 
   <script>

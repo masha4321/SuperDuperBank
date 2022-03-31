@@ -242,10 +242,9 @@ function InsertValue($accountNumber)
                     ?>
 
                 </table>
-                <br>
-                <a href="dashboard.php" class="href">Back</a>
-                <br>
-                <a href="log_out.php" class="href">Log out</a>
+                <button id="register_btn"><a href="dashboard.php">Back</a></button>
+                <button id="register_btn"><a href="log_out.php">Log out</a></button>
+                
             </div>
             <div class="col-6"></div>
         </div>

@@ -102,9 +102,9 @@ function InsertValue()
 
                     <input type="submit" class="submit" value="Confirm">
 
-                    <br>
-                    <a href="admin_log_in.php" class="href">Sign in as an administrator</a> <br>
-                    <a href="index.php" class="href">Home</a> <br>
+                    <button id="register_btn"> <a href="admin_log_in.php" >Sign in as an administrator</a></button>
+                    <button id="register_btn"><a href="index.php">Home</a></button>
+                    
                 </form>
             </div>
             <div class="col-6"></div>

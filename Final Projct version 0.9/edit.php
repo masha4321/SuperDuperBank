@@ -156,7 +156,7 @@ function UpdateData()
                     <input type="submit" class="submit" value="Update">
 
                     <br>
-                    <button><a type="button" href="dashboard.php">Cancel</a></button><br>
+                    <button id="register_btn"><a type="button" href="dashboard.php">Cancel</a></button><br>
 
                 </form>
             </div>

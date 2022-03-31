@@ -17,8 +17,7 @@
             <div class="maindiv">
             <div class="success">Your session has ended, please login again.</div>
             <div class="col-6">
-                <br>
-                <a href="index.php" class="href">Home</a> <br>
+            <button id="register_btn"><a href="index.php">Home</a> <br></button>
             </div>
             <div class="col-6"></div>
             </div>
