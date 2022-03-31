@@ -1,4 +1,5 @@
 body {
+  font-family: 'Roboto', sans-serif;
   background: #aeb0f8;
   display: flex;
   height: 100vh;
@@ -25,7 +26,7 @@ h2 {
 }
 
 * {
-  font-family: sans-serif;
+  /*font-family: sans-serif;*/
   box-sizing: border-box;
 }
 
@@ -44,20 +45,33 @@ h2 {
 }
 
 .submit {
-  width: 100%;
+  /*width: 100%;
   background-color: #051367;
   color: #dff6ff;
   padding: 14px 20px;
   margin: 8px 0;
   border: none;
-  border-radius: 4px;
+  border-radius: 4px;*/
   cursor: pointer;
+  color: #090909;
+  padding: 0.7em 1.7em;
+  font-size: 18px;
+  border-radius: 0.5em;
+  background: rgb(248,222,126);
+  border: 1px solid #e8e8e8;
+  transition: all .3s;
+  box-shadow: 6px 6px 12px #c5c5c5,
+              -6px -6px 12px #ffffff;
+  width: 50%;
+  margin: 20px;
+  text-align: center;
 }
 
 div {
   border-radius: 5px;
   background-color: #f2f2f2;
   padding: 20px;
+  text-align: center;
 }
 .error-msg {
   margin-top: 4px;
@@ -65,15 +79,50 @@ div {
   font-weight: bold;
 }
 .success {
-  background: #051367;
+  background: #301934;
   padding: 19px;
   text-align: center;
-  font-size: 16px;
-  font-weight: bold;
+  font-size: 25px;
+  /*font-weight: bold;*/
   color: #dff6ff;
-  font-family: cursive;
+  /*font-family: cursive;*/
 }
 
-a:hover {
+/*a:hover {
   color: coral;
+}*/
+button {
+  color: #090909;
+  padding: 0.7em 1.7em;
+  font-size: 18px;
+  border-radius: 0.5em;
+  background: rgb(248,222,126);
+  border: 1px solid #e8e8e8;
+  transition: all .3s;
+  box-shadow: 6px 6px 12px #c5c5c5,
+              -6px -6px 12px #ffffff;
+  width: 50%;
+  margin: 20px;
+ }
+ 
+ button:hover {
+  border: 1px solid white;
+ }
+ 
+ button:active {
+  box-shadow: 4px 4px 12px #c5c5c5,
+              -4px -4px 12px #ffffff;
+ }
+
+ a{
+   text-decoration: none;
+   padding: 10px;
+ }
+
+ a:link{
+  color: #090909;
+ }
+
+ a:visited {
+  color: #090909;
 }
