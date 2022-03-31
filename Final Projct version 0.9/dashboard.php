@@ -45,7 +45,7 @@ function InsertValue($userID)
 function InsertBankingValue($userAccountNumber)
 {
     require "connect.php";
-    $sql = "select * from transactions WHERE account_number = '{$userAccountNumber}'";
+    $sql = "select * from transactions WHERE account_number = '{$userAccountNumber}' order by date_created desc limit 15";
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
         $array_result_banking = $result->fetch_all(MYSQLI_ASSOC);
@@ -101,7 +101,7 @@ function InsertBankingValue($userAccountNumber)
                                 <td><?php echo $value['mobile']; ?></td>
                                 <td><?php echo $value['address']; ?></td>
                                 <td><?php echo $value['email']; ?></td>
-                                <td><a href="edit.php">Update</a>
+                                <td><a href="dashboard.php">Update</a>
                             </tr>
                         <?php }
                         ?>

@@ -109,9 +109,16 @@ if (isset($_POST['deleteButton'])) {
       <?php } ?>
 
     </table>
-    <input type="submit" value="delete" name="deleteButton">
+    <input type="submit" value="delete" name="deleteButton" onclick="return confirmDelete();">
   </form>
   <a href="log_out.php" class="href">Log out</a> <br>
+
+
+  <script>
+    function confirmDelete() {
+      return confirm('Do you really want to delete?')
+    }
+  </script>
 </body>
 
 </html>
