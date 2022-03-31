@@ -236,11 +236,12 @@ function InsertValue($accountNumber)
                         <tr>
                             <td><?php echo $value['contact_name']; ?></td>
                             <td><?php echo $value['contact_number']; ?></td>
-                            <td><input type='checkbox' name='delete[]' value='<?= $id ?>'></td>
+                            <td><input type='radio' name='selectContact' value='<?= $id ?>'></td>
                         </tr>
                     <?php }
                     ?>
-
+                    <input type="submit" value="Select contact" name="selectContact">
+                    <br>
                 </table>
                 <button id="register_btn"><a href="dashboard.php">Back</a></button>
                 <button id="register_btn"><a href="log_out.php">Log out</a></button>
