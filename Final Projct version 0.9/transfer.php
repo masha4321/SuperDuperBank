@@ -192,7 +192,7 @@ function InsertValue($accountNumber)
                     <input type="text" class="input-div-nn" id="transaction_informations" name="transaction_informations" placeholder="Please enter any comments regarding the transaction" value="<?php echo $transaction_informations; ?>">
                     <p class="error-msg"><?php echo $error_log['transaction_informations']; ?></p>
 
-                    <input type="submit" class="submit" value="Send registration form">
+                    <input type="submit" class="submit" value="Transfer money">
 
                     <div class="col-6">
                 </form>
