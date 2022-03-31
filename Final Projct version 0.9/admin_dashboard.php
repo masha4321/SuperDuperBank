@@ -52,39 +52,55 @@ function InsertValue()
 <body>
   <p>HI ADMIN</p>
 
-  <form name="form1" method="post" action="searchresults.php">
+  <form name="form1" method="post" action="search.php">
     <input name="search" type="text" size="40" maxlength="50">
     <input type="submit" name="Submit" value="search">
   </form>
 
-  <table id="customers">
-    <tr>
-      <th>First name</th>
-      <th>Last name</th>
-      <th>Mobile</th>
-      <th>address</th>
-      <th>Email</th>
-      <th>Registration date</th>
-      <th>id</th>
-      <th>Edit</th>
-    </tr>
-    <?php
+  <form method="post" action=" <?php echo $_SERVER['PHP_SELF']; ?>">
 
-    foreach ($array_result as $value) { ?>
+    <table id="customers">
       <tr>
-        <td><?php echo $value['first_name']; ?></td>
-        <td><?php echo $value['last_name']; ?></td>
-        <td><?php echo $value['mobile']; ?></td>
-        <td><?php echo $value['address']; ?></td>
-        <td><?php echo $value['email']; ?></td>
-        <td><?php echo $value['reg_date']; ?></td>
-        <td><?php echo $value['id']; ?></td>
-        <td><a href="edit.php">Edit</a> | <a href="edit.php">Delete</a></td>
+        <th>ID</th>
+        <th>First name</th>
+        <th>Last name</th>
+        <th>Mobile</th>
+        <th>address</th>
+        <th>Email</th>
+        <th>Registration date</th>
+        <th>Edit</th>
+        <th>Delete</th>
       </tr>
-    <?php } ?>
+      <?php
+      $query = "SELECT * FROM user_accounts";
+      $result = mysqli_query($conn, $query);
 
-  </table>
+      while ($row = mysqli_fetch_array($result)) {
+        $id = $row['id'];
+        $first_name = $row['first_name'];
+        $last_name = $row['last_name'];
+        $mobile = $row['mobile'];
+        $address = $row['address'];
+        $email = $row['email'];
+        $reg_date = $row['reg_date'];
+      ?>
+        <tr id='tr_<?= $id ?>'>
+          <td><?= $id ?></td>
+          <td><?= $first_name ?></td>
+          <td><?= $last_name ?></td>
+          <td><?= $mobile ?></td>
+          <td><?= $address ?></td>
+          <td><?= $email ?></td>
+          <td><?= $reg_date ?></td>
+          <td><a href="edit.php">Edit</a></td>
+          <!-- Checkbox -->
+          <td><input type='checkbox' name='delete[]' value='<?= $id ?>'></td>
+        </tr>
+      <?php } ?>
 
+    </table>
+    <input type="submit" value="delete" name="deleteButton">
+  </form>
   <a href="log_out.php" class="href">Log out</a> <br>
 </body>
 
