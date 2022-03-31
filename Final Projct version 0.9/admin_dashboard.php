@@ -36,6 +36,18 @@ function InsertValue()
   $conn->close();
   return $array_result;
 }
+
+require "connect.php";
+if (isset($_POST['deleteButton'])) {
+
+  if (isset($_POST['delete'])) {
+    foreach ($_POST['delete'] as $deleteUser) {
+
+      $deleteSQL = "DELETE from user_accounts WHERE id=" . $deleteUser;
+      mysqli_query($conn, $deleteSQL);
+    }
+  }
+}
 ?>
 
 <!DOCTYPE html>
@@ -72,6 +84,7 @@ function InsertValue()
         <th>Delete</th>
       </tr>
       <?php
+      require "connect.php";
       $query = "SELECT * FROM user_accounts";
       $result = mysqli_query($conn, $query);
 
