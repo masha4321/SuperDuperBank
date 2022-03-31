@@ -24,7 +24,6 @@ $array_result = GetValue($userID);
 
 foreach ($array_result as $value) {
     $accountNumber = $value['account_number'];
-    echo $accountNumber;
 }
 
 $array_result_banking = InsertBankingValue($accountNumber);
@@ -102,7 +101,7 @@ function formValidation()
             $error_log['transaction_informations'] = 'Please enter your transaction_informations';
         }
         if ($_POST['amount'] != '' && $_POST['account_traded_with'] != '' && $_POST['transaction_informations'] != '') {
-            $error_log['success'] = '<p class="success">Thank you! The recipient will receive the money shortly.</p>';
+            $error_log['success'] = '<p class="success">Thank you!</p>';
             $amount = $account_traded_with = $transaction_informations = '';
         }
     }
@@ -148,6 +147,20 @@ function InsertValue($accountNumber)
     <div class="container">
         <div class="maindiv">
             <div class="col-6">
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
                 <h2 class="success">Transfer</h2>
                 <br>
                 <?php echo $error_log['success']; ?>
@@ -183,6 +196,26 @@ function InsertValue($accountNumber)
 
                     <div class="col-6">
                 </form>
+                <br>
+                <table id="customers">
+                        <tr>
+                            <th>Contact Name</th>
+                            <th>Account number</th>
+                            <th>Select</th>
+                        </tr>
+
+                        <?php
+                        foreach ($array_result_contact as $value) { ?>
+                            <tr>
+                                <td><?php echo $value['contact_name']; ?></td>
+                                <td><?php echo $value['contact_number']; ?></td>
+                                <td><input type='checkbox' name='delete[]' value='<?= $id ?>'></td>
+                            </tr>
+                        <?php }
+                        ?>
+
+                    </table>
+                    <br>
             <a href="dashboard.php" class="href">Back</a>
             <br>
             <a href="log_out.php" class="href">Log out</a>

@@ -27,8 +27,6 @@ foreach ($array_result as $value) {
 
 $array_result_banking = InsertBankingValue($accountNumber);
 
-$array_result_contact = InsertContactValue($accountNumber);
-
 function GetValue($userID)
 {
     require "connect.php";
@@ -55,20 +53,6 @@ function InsertBankingValue($accountNumber)
     }
     $conn->close();
     return $array_result_banking;
-}
-
-function InsertContactValue($accountNumber)
-{
-    require "connect.php";
-    $sql = "select * from contacts WHERE account_number  = '{$accountNumber}'";
-    $result = $conn->query($sql);
-    if ($result->num_rows > 0) {
-        $array_result_contact = $result->fetch_all(MYSQLI_ASSOC);
-    } else {
-        echo "error" . $conn->connect_error;
-    }
-    $conn->close();
-    return $array_result_contact;
 }
 
 $amount = '';
@@ -106,7 +90,7 @@ if (isset($error_log['success']) && !empty($error_log['success'])) {
 function InsertValue($accountNumber)
 {
     require "connect.php";
-    $transaction_informations = "Deposit";
+    $transaction_informations = "User deposited " . $_POST['amount'] . " in his own account";
     $transactionType = "Deposit";
 
     $sql0 = "SELECT balance FROM user_accounts WHERE account_number='{$accountNumber}'";

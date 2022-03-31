@@ -101,7 +101,7 @@ function InsertBankingValue($userAccountNumber)
                                 <td><?php echo $value['mobile']; ?></td>
                                 <td><?php echo $value['address']; ?></td>
                                 <td><?php echo $value['email']; ?></td>
-                                <td><a href="edit.php">Update</a>
+                                <td><a href="dashboard.php">Update</a>
                             </tr>
                         <?php }
                         ?>
@@ -127,15 +127,36 @@ function InsertBankingValue($userAccountNumber)
 
                     <p>
                         <?php
-                        echo "Your account number is " . $accountNumber;
-                        echo '<br>';
                         echo "Your account balance is " . $accountBalance . " $";
-
-                        if ($accountBalance < 0) {
-                            echo "<br><br>Extra charges may be applied at the end of the month.";
-                        }
+                        echo '<br>';
+                        echo "Your account number is " . $accountNumber;
                         ?>
                     </p>
+
+
+
+                    <table id="customers">
+                        <tr>
+                            <th>Type of transaction</th>
+                            <th>Amount</th>
+                            <th>Date</th>
+                            <th>Information</th>
+                            <th>Account traded with</th>
+                        </tr>
+
+                        <?php
+                        foreach ($array_result_banking as $value) { ?>
+                            <tr>
+                                <td><?php echo $value['type']; ?></td>
+                                <td><?php echo $value['amount']; ?></td>
+                                <td><?php echo $value['date_created']; ?></td>
+                                <td><?php echo $value['transaction_informations']; ?></td>
+                                <td><?php echo $value['account_traded_with']; ?></td>
+                            </tr>
+                        <?php }
+                        ?>
+
+                    </table>
 
 
                 </div>
@@ -153,60 +174,12 @@ function InsertBankingValue($userAccountNumber)
                         <a type="button" href="withdraw.php"><button class="btn btn-outline-primary">Withdraw</button></a>
                         <a type="button" href="deposit.php"><button class="btn btn-outline-primary">Deposit</button></a>
                         <a type="button" href="transfer.php"><button class="btn btn-outline-primary">Transfer</button></a>
+                        <a type="button" href="contact.php"><button class="btn btn-outline-primary">Contact list</button></a>
                     </div>
                 </div>
             </div>
         </div>
-
-        <div class="accordion-item">
-            <h2 class="accordion-header" id="headingFour">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                    Transaction History
-                </button>
-            </h2>
-            <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
-                <div class="accordion-body text-center">
-                    <table id="customers">
-                        <tr>
-                            <th>Type of transaction</th>
-                            <th>Amount</th>
-                            <th>Account traded with</th>
-                            <th>Date</th>
-                        </tr>
-
-                        <?php
-                        foreach ($array_result_banking as $value) { ?>
-                            <tr>
-                                <td><?php echo $value['transaction_informations']; ?></td>
-                                <td><?php echo $value['amount']; ?></td>
-                                <td><?php echo $value['account_traded_with']; ?></td>
-                                <td><?php echo $value['date_created']; ?></td>
-                            </tr>
-                        <?php }
-                        ?>
-
-                    </table>
-
-                </div>
-            </div>
-        </div>
-
-        <div class="accordion-item">
-            <h2 class="accordion-header" id="headingFive">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
-                    Logout
-                </button>
-            </h2>
-            <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#accordionExample">
-                <div class="accordion-body text-center">
-                    <button id="logout_btn"><a href="log_out.php" class="href">Log out</a></button>
-
-                </div>
-            </div>
-        </div>
-
-
-
+        <a href="log_out.php" class="href">Log out</a> <br>
     </div>
 
 

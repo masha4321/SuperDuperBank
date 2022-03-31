@@ -22,7 +22,7 @@ function formValidation()
             $error_log['pwd'] = 'Please enter your Email';
         }
         if ($_POST['username'] != '' && $_POST['pwd'] != '') {
-            $error_log['success'] = '<p class="success">Thank you we will contact you soon</p>';
+            $error_log['success'] = '<p class="success">Thank you!</p>';
             $name = '';
         }
     }

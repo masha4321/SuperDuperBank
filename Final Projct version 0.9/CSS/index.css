@@ -126,3 +126,39 @@ button {
  a:visited {
   color: #090909;
 }
+
+#customers tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+#customers tr:hover {
+  background-color: #ddd;
+}
+
+#customers th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #051367;
+  color: #dff6ff;
+}
+form {
+  margin-bottom: 5px;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th,
+td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+  background-color: white;
+}
+
+tr:hover {
+  background-color: coral;
+}
