@@ -104,7 +104,7 @@ function formValidation()
 if (isset($error_log['success']) && !empty($error_log['success'])) {
     try {
         InsertValue($accountNumber);
-        $contact_name = $contact_number ='';
+        $contact_name = $contact_number = '';
     } catch (Exception $e) {
         echo 'Caught exception: ',  $e->getMessage(), "\n";
     }
@@ -116,7 +116,6 @@ function InsertValue($accountNumber)
 
     $sql = "insert into contacts (account_number,contact_number,contact_name) values('$accountNumber','$_POST[contact_number]','$_POST[contact_name]')";
     if ($conn->query($sql) === true) {
-
     } else {
         echo "error" . $conn->connect_error;
     }
@@ -131,7 +130,7 @@ function InsertValue($accountNumber)
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta first_name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact list</title>
+    <title>Contact List</title>
     <link rel="stylesheet" href="css/index.css">
 </head>
 
@@ -139,14 +138,10 @@ function InsertValue($accountNumber)
     <div class="container">
         <div class="maindiv">
             <div class="col-6">
-            <br>
-            <br>
-            <br>
-            <br>
                 <h2 class="success">Contact list</h2>
                 <br>
                 <?php echo $error_log['success']; ?>
-                                
+
                 <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
 
                     <label for="contact_name">Contact name<span class="error-msg">*</label>
@@ -163,25 +158,25 @@ function InsertValue($accountNumber)
                 </form>
                 <br>
                 <table id="customers">
+                    <tr>
+                        <th>Contact Name</th>
+                        <th>Account number</th>
+                    </tr>
+
+                    <?php
+                    foreach ($array_result_contact as $value) { ?>
                         <tr>
-                            <th>Contact Name</th>
-                            <th>Account number</th>
+                            <td><?php echo $value['contact_name']; ?></td>
+                            <td><?php echo $value['contact_number']; ?></td>
                         </tr>
+                    <?php }
+                    ?>
 
-                        <?php
-                        foreach ($array_result_contact as $value) { ?>
-                            <tr>
-                                <td><?php echo $value['contact_name']; ?></td>
-                                <td><?php echo $value['contact_number']; ?></td>
-                            </tr>
-                        <?php }
-                        ?>
-
-                    </table>
-                    <br>
-            <a href="dashboard.php" class="href">Back</a>
-            <br>
-            <a href="log_out.php" class="href">Log out</a>
+                </table>
+                <br>
+                <a href="dashboard.php" class="href">Back</a>
+                <br>
+                <a href="log_out.php" class="href">Log out</a>
             </div>
             <div class="col-6"></div>
         </div>

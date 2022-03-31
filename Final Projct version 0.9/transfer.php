@@ -172,21 +172,7 @@ function InsertValue($accountNumber)
 <body>
     <div class="container">
         <div class="maindiv">
-            <div class="col-6">
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
+            <div id="top" class="col-6">
                 <h2 class="success">Transfer</h2>
                 <br>
                 <?php echo $error_log['success']; ?>

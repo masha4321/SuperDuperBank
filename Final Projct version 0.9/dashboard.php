@@ -73,7 +73,7 @@ function InsertBankingValue($userAccountNumber)
 </head>
 
 <body>
-    <div class="container">
+    <div id="top" class="container">
         <div class="maindiv">
             <div class="accordion" id="accordionExample">
                 <div class="accordion-item">

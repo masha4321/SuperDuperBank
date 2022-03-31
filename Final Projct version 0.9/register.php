@@ -61,7 +61,7 @@ function formValidation()
         }
         if ($_POST['username'] != '' && $_POST['pwd'] != '' && $_POST['first_name'] != '' && $_POST['last_name'] != '' && $_POST['mobile'] != '' && $_POST['address'] != '' && $_POST['email'] != '' && $_POST['amount']) {
             $error_log['success'] = '<p class="success">Thank you! You are now registered!</p>';
-            $username = $pwd = $first_name = $last_name = $mobile = $address = $email = $amount='';
+            $username = $pwd = $first_name = $last_name = $mobile = $address = $email = $amount = '';
         }
     }
     return $error_log;
@@ -130,7 +130,7 @@ function InsertValue()
         echo "error" . $conn->connect_error;
     }
 
-    $name="My self";
+    $name = "My self";
 
     $sql1 = "insert into transactions (account_number,type,amount,transaction_informations) values('$userAccountNumber','$transactionType','$_POST[amount]','$transaction_informations')";
     if ($conn->query($sql1) === true) {
@@ -162,31 +162,7 @@ function InsertValue()
 <body>
     <div class="container">
         <div class="maindiv">
-            <div class="col-6">
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
+            <div id="top" class="col-6">
                 <h2 class="success">Welcome to the registration form!</h2>
                 <br>
                 <?php echo $error_log['success']; ?>
