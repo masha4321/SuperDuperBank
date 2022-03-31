@@ -172,29 +172,22 @@ function InsertBankingValue($userAccountNumber)
                                 <tr>
                                     <th>Type of transaction</th>
                                     <th>Amount</th>
-                                    <th>Account traded with</th>
                                     <th>Date</th>
+                                    <th>Information</th>
+                                    <th>Account traded with</th>
                                 </tr>
-
                                 <?php
-                                foreach ($array_result_banking as $value) { ?>
-                                    <tr>
-                                        <td><?php echo $value['transaction_informations']; ?></td>
-                                        <td><?php echo $value['amount']; ?></td>
-                                        <td><?php
-
-                                            if ($value['account_traded_with'] == 0) {
-                                                echo '';
-                                            } else {
-                                                echo $value['account_traded_with'];
-                                            } ?></td>
-                                        <td><?php echo $value['date_created']; ?></td>
-                                    </tr>
-                                <?php }
-                                ?>
-
+                                    foreach ($array_result_banking as $value) { ?>
+                                        <tr>
+                                            <td><?php echo $value['type']; ?></td>
+                                            <td><?php echo $value['amount']; ?></td>
+                                            <td><?php echo $value['date_created']; ?></td>
+                                            <td><?php echo $value['transaction_informations']; ?></td>
+                                            <td><?php echo $value['account_traded_with']; ?></td>
+                                        </tr>
+                                    <?php }
+                                            ?>
                             </table>
-
                         </div>
                     </div>
                 </div>
