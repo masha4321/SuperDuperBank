@@ -64,3 +64,31 @@ tr:hover {
   margin-top:125px;
 }
 
+#logout_btn{
+  padding: 10px 10px;
+ border: unset;
+ border-radius: 15px;
+ color: #212121;
+ z-index: 1;
+ background: #aeb0f8;
+ position: relative;
+ font-weight: 500;
+ font-size: 15px;
+ -webkit-box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
+ box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
+ transition: all 250ms;
+ overflow: hidden;
+}
+
+a{
+  text-decoration: none;
+  padding: 10px;
+}
+
+a:link{
+ color: #090909;
+}
+
+a:visited {
+ color: #090909;
+}

@@ -207,7 +207,7 @@ function InsertBankingValue($userAccountNumber)
                     </h2>
                     <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#accordionExample">
                         <div class="accordion-body text-center">
-                            <button id="logout_btn"><a href="log_out.php" class="href">Log out</a></button>
+                            <button id="logout_btn"><a href="log_out.php">Log out</a></button>
 
                         </div>
                     </div>
