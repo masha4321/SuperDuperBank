@@ -101,7 +101,7 @@ function InsertBankingValue($userAccountNumber)
                                 <td><?php echo $value['mobile']; ?></td>
                                 <td><?php echo $value['address']; ?></td>
                                 <td><?php echo $value['email']; ?></td>
-                                <td><a href="dashboard.php">Update</a>
+                                <td><a href="edit.php">Update</a>
                             </tr>
                         <?php }
                         ?>
