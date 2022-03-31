@@ -108,7 +108,7 @@ if (isset($error_log['success']) && !empty($error_log['success'])) {
 function InsertValue($accountNumber)
 {
     require "connect.php";
-    $transaction_informations = "User withdrew " . $_POST['amount'] . " from his own account";
+    $transaction_informations = "Withdraw";
     $transactionType = "Withdrawal";
 
     $sql0 = "SELECT balance FROM user_accounts WHERE account_number='{$accountNumber}'";

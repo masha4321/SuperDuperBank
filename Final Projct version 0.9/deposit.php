@@ -106,7 +106,7 @@ if (isset($error_log['success']) && !empty($error_log['success'])) {
 function InsertValue($accountNumber)
 {
     require "connect.php";
-    $transaction_informations = "User deposited " . $_POST['amount'] . " in his own account";
+    $transaction_informations = "Deposit";
     $transactionType = "Deposit";
 
     $sql0 = "SELECT balance FROM user_accounts WHERE account_number='{$accountNumber}'";

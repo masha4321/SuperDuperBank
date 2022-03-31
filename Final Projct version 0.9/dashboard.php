@@ -128,9 +128,13 @@ function InsertBankingValue($userAccountNumber)
 
                     <p>
                         <?php
-                        echo "Your account balance is " . $accountBalance . " $";
-                        echo '<br>';
                         echo "Your account number is " . $accountNumber;
+                        echo '<br>';
+                        echo "Your account balance is " . $accountBalance . " $";
+
+                        if ($accountBalance < 0) {
+                            echo "<br><br>Extra charges may be applied at the end of the month.";
+                        }
                         ?>
                     </p>
 
