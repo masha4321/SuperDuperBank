@@ -116,7 +116,7 @@ function InsertValue()
 <body>
     <div class="container">
         <div class="maindiv">
-            <div class="success">Welcome to the log in page!</div>
+            <div class="success">Log In</div>
             <div class="col-6">
 
                 <?php //echo $error_log['success'];
@@ -131,7 +131,7 @@ function InsertValue()
                     <input type="password" class="input-div-nn" id="pwd" name="pwd" value="<?php echo $pwd; ?>">
                     <p class="error-msg"><?php echo $error_log['pwd']; ?></p>
 
-                    <input type="submit" class="submit" value="Confirm">
+                    <input type="submit" class="submit" value="Confirm"><br>
 
                     <a href="register.php" class="href">Register</a>
                     <br>
