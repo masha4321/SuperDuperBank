@@ -66,7 +66,7 @@ if (isset($_POST['deleteButton'])) {
 
   <form name="form1" method="post" action="search.php">
     <input name="search" type="text" size="40" maxlength="50">
-    <input type="submit" name="Submit" value="search">
+    <input type="submit" name="Submit">
   </form>
 
   <form method="post" action=" <?php echo $_SERVER['PHP_SELF']; ?>">
@@ -116,7 +116,7 @@ if (isset($_POST['deleteButton'])) {
 
   <script>
     function confirmDelete() {
-      return confirm('Do you really want to delete?')
+      return confirm('Do you really want to delete?');
     }
   </script>
 </body>
